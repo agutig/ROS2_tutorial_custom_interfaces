@@ -1,4 +1,4 @@
-# ROS2 Tutorial: Personalized interfaces [SPANISH/ESPAÑOL]
+# ROS2 Tutorial: Custom interfaces (Incompleto) [SPANISH/ESPAÑOL]
 
 * Autor: Agutig (Álvaro "Guti" Gutiérrez García)
 * Ultima revisión: Mayo 2024
