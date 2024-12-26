@@ -24,15 +24,37 @@ Las interfaces en ROS 2 representan los mensajes a través de los cuales se faci
 
 ### 2. Borrar todo en el paquete excepto los archivos CMakeLists.txt, package.xml
 
+<img src="https://github.com/agutig/media_repository/blob/main/ros2_custom_interfaces_tutorial/empty_package_0.png" width="400" height="250">
 
 ### 3. Crear una carpeta msg donde guardaremos las estructuras de los .msg . La estructura se debe ver asi:
 
+<img src="https://github.com/agutig/media_repository/blob/main/ros2_custom_interfaces_tutorial/empty_package_1.png" width="500" height="300">
 
 ### 4. En la carpeta msg crear nuestro primer archivo “.msg” que definirá la estructura de los mensajes. NOTA: La primera letra del archivo debe ser en mayúsculas
 
+<img src="https://github.com/agutig/media_repository/blob/main/ros2_custom_interfaces_tutorial/empty_package_2.png" width="500" height="300">
+
 ### 5.Dentro de esta archivo, añadiremos los elementos que necesitaremos en nuestras interfaces, similar a un json. La estructura que debemos seguir es
 
-- tipo nombre_variable
+```
+tipo nombre_variable
+```
+
+Ejemplo para un msg de tipo imagen
+
+```
+# Custom.msg
+
+uint16 original_width
+uint16 original_height
+
+uint8[] vector_r #R matrix flattened into a vector
+uint8[] vector_g #G matrix flattened into a vector
+uint8[] vector_b #B matrix flattened into a vector
+```
+
+
+
 
 ### 6. Configurar el CMakeLists.txt . Principalmente hay que añadir las siguientes lineas: 
 
@@ -69,10 +91,37 @@ Para añadirlos:
 
 #Si se pone como archivo .hpp aunque no hayas definido ningun archivo .hpp como tal
 
-y para declarar un objeto msg
+para declarar un objeto msg
 
 ```cpp
-nombre_paquete_interfaz::msg::Nombre_interfaz  #AHORA EN MAYUSCULAS
+nombre_paquete_interfaz::msg::Nombre_interfaz   msg;  #AHORA EN MAYUSCULAS
 ```
 
+Y finalmente podemos rellenar sus atributos como:
+
+```cpp
+msg.width = 1920;   
+msg.height = 1080;   
+```
+
+
 #### 8.2. Python
+Para utilizar tus interfaces personalizadas en un proyecto Python:
+
+Importa la interfaz desde tu paquete:
+
+```python
+from nombre_paquete_interfaz.msg import NombreInterfaz
+```
+y para declarar un objeto msg
+
+```python
+msg = NombreInterfaz()
+```
+
+Y finalmente podemos rellenar sus atributos como:
+
+```python
+msg.width = 1920
+msg.height = 1080
+```
